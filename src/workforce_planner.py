@@ -18,7 +18,7 @@ class StrategicWorkforcePlanner:
         
         # relative paths to ensure it works on any machine (or circleci)
         self.RAW_PATH = 'data/raw/'
-        self.PROCESSED_PAT = 'data/processed/'
+        self.PROCESSED_PATH = 'data/processed/'
         
         # make sure the output folder exists so we don't get an error later
         os.makedirs(self.PROCESSED_PATH, exist_ok=True)
