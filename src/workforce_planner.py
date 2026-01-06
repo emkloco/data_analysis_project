@@ -55,7 +55,7 @@ class StrategicWorkforcePlanner:
         # ---------------------------
         try:
             # this file has a double header. the real column names are on the second row (index 1)
-            self.raw_ai = pd.read_csv(f'{self.RAW_PATH}ai_readiness_index.csv', header=1)
+            self.raw_ai = pd.read_csv(f'{self.RAW_PATH}ai_readiness_index.csv', header=1, encoding='latin1')
             
             # rename for consistency with our internal naming convention
             self.raw_ai.rename(columns={'Total score': 'AI_Score'}, inplace=True)
