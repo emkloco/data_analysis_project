@@ -144,3 +144,4 @@ if __name__ == "__main__":
     app = StrategicWorkforcePlanner()
     app.load_and_clean_data()
     app.train_model()
+    app.visualize_strategy()
