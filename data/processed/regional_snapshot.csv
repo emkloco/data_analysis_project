@@ -1,0 +1,244 @@
+Region,Year,Income,Ratio
+North East,1997,9072,2.97
+North West,1997,9603,2.85
+Yorkshire and The Humber,1997,9484,2.815
+East Midlands,1997,9640,3.13
+West Midlands,1997,9668,3.43
+London,1997,12910,4.32
+South East,1997,12697,4.35
+South West,1997,10959,3.84
+Wales,1997,9251,3.035
+North East,1998,9136,2.83
+North West,1998,9746,2.91
+Yorkshire and The Humber,1998,9735,2.8099999999999996
+East Midlands,1998,9828,3.26
+West Midlands,1998,9949,3.34
+London,1998,13338,4.92
+South East,1998,12900,4.6
+South West,1998,11173,4.205
+Wales,1998,9297,3.0199999999999996
+North East,1999,9484,2.89
+North West,1999,10253,2.9
+Yorkshire and The Humber,1999,10206,2.88
+East Midlands,1999,10269,3.53
+West Midlands,1999,10332,3.73
+London,1999,14172,5.3
+South East,1999,13332,4.984999999999999
+South West,1999,11566,4.3
+Wales,1999,9721,3.045
+North East,2000,9972,3.01
+North West,2000,10706,2.93
+Yorkshire and The Humber,2000,10633,2.8049999999999997
+East Midlands,2000,10657,3.63
+West Midlands,2000,10796,3.73
+London,2000,15208,5.88
+South East,2000,14032,5.54
+South West,2000,12001,4.71
+Wales,2000,10281,3.255
+North East,2001,10437,2.75
+North West,2001,11090,3.02
+Yorkshire and The Humber,2001,10988,2.87
+East Midlands,2001,11100,3.78
+West Midlands,2001,11212,3.81
+London,2001,15763,6.63
+South East,2001,14499,6.18
+South West,2001,12463,5.17
+Wales,2001,10707,3.275
+North East,2002,10626,3.13
+North West,2002,11386,3.26
+Yorkshire and The Humber,2002,11256,3.125
+East Midlands,2002,11391,4.14
+West Midlands,2002,11457,4.57
+London,2002,15965,7.18
+South East,2002,14824,6.880000000000001
+South West,2002,12657,6.12
+Wales,2002,11049,3.4749999999999996
+North East,2003,10951,3.825
+North West,2003,11756,3.82
+Yorkshire and The Humber,2003,11626,3.83
+East Midlands,2003,11841,5.4
+West Midlands,2003,11771,5.1899999999999995
+London,2003,16662,8.15
+South East,2003,15047,7.705
+South West,2003,12977,7.68
+Wales,2003,11394,4.4
+North East,2004,11453,4.745
+North West,2004,12200,4.77
+Yorkshire and The Humber,2004,12015,4.64
+East Midlands,2004,12305,6.15
+West Midlands,2004,12175,6.375
+London,2004,17573,8.26
+South East,2004,15634,8.09
+South West,2004,13434,8.23
+Wales,2004,11845,5.405
+North East,2005,11692,5.085
+North West,2005,12585,5.4
+Yorkshire and The Humber,2005,12302,5.2
+East Midlands,2005,12629,6.37
+West Midlands,2005,12380,6.285
+London,2005,18587,8.35
+South East,2005,16193,8.23
+South West,2005,13946,8.5
+Wales,2005,12141,6.17
+North East,2006,12109,5.635
+North West,2006,12999,5.82
+Yorkshire and The Humber,2006,12733,5.61
+East Midlands,2006,13048,6.43
+West Midlands,2006,12840,6.54
+London,2006,19530,8.38
+South East,2006,16919,8.49
+South West,2006,14652,8.645
+Wales,2006,12526,6.51
+North East,2007,12415,5.59
+North West,2007,13520,5.91
+Yorkshire and The Humber,2007,13252,5.71
+East Midlands,2007,13798,6.58
+West Midlands,2007,13193,6.91
+London,2007,20927,9.01
+South East,2007,17739,8.99
+South West,2007,15176,8.715
+Wales,2007,12885,6.445
+North East,2008,12715,5.46
+North West,2008,13748,5.75
+Yorkshire and The Humber,2008,13422,5.48
+East Midlands,2008,13957,6.25
+West Midlands,2008,13543,6.5
+London,2008,21540,9.16
+South East,2008,18090,8.605
+South West,2008,15656,8.54
+Wales,2008,13423,6.495
+North East,2009,13276,5.165
+North West,2009,14246,5.12
+Yorkshire and The Humber,2009,13786,4.97
+East Midlands,2009,14189,5.77
+West Midlands,2009,13866,5.965
+London,2009,21436,8.16
+South East,2009,18448,7.630000000000001
+South West,2009,15745,7.66
+Wales,2009,13440,5.575
+North East,2010,13498,5.375
+North West,2010,14370,5.41
+Yorkshire and The Humber,2010,13843,5.31
+East Midlands,2010,14215,5.89
+West Midlands,2010,14001,6.35
+London,2010,21574,8.71
+South East,2010,18491,8.305
+South West,2010,16103,8.25
+Wales,2010,13642,5.825
+North East,2011,13634,4.715
+North West,2011,14496,5.06
+Yorkshire and The Humber,2011,14066,4.97
+East Midlands,2011,14492,5.9
+West Midlands,2011,14180,6.16
+London,2011,21396,8.94
+South East,2011,18665,8.105
+South West,2011,16351,7.904999999999999
+Wales,2011,13865,5.59
+North East,2012,14217,4.785
+North West,2012,14963,5.11
+Yorkshire and The Humber,2012,14479,5.0
+East Midlands,2012,14973,5.9
+West Midlands,2012,14562,5.87
+London,2012,22697,9.34
+South East,2012,19312,8.105
+South West,2012,16716,7.745
+Wales,2012,14290,5.475
+North East,2013,14556,4.845
+North West,2013,15431,5.13
+Yorkshire and The Humber,2013,14888,4.98
+East Midlands,2013,15426,5.82
+West Midlands,2013,15054,6.05
+London,2013,23881,10.22
+South East,2013,20096,8.49
+South West,2013,17329,7.52
+Wales,2013,14608,5.33
+North East,2014,14953,4.895
+North West,2014,15822,5.44
+Yorkshire and The Humber,2014,15302,5.16
+East Midlands,2014,15907,6.3
+West Midlands,2014,15601,6.195
+London,2014,24885,11.8
+South East,2014,20576,8.905
+South West,2014,17906,8.129999999999999
+Wales,2014,15086,5.525
+North East,2015,15509,5.04
+North West,2015,16545,5.35
+Yorkshire and The Humber,2015,16023,5.28
+East Midlands,2015,16674,6.61
+West Midlands,2015,16387,6.9
+London,2015,26649,12.91
+South East,2015,21792,9.469999999999999
+South West,2015,18704,8.600000000000001
+Wales,2015,15585,5.675000000000001
+North East,2016,15711,5.140000000000001
+North West,2016,16658,5.46
+Yorkshire and The Humber,2016,16108,5.22
+East Midlands,2016,16697,6.73
+West Midlands,2016,16666,6.675000000000001
+London,2016,27096,14.42
+South East,2016,22083,10.594999999999999
+South West,2016,18862,8.825
+Wales,2016,15711,5.75
+North East,2017,16027,5.3100000000000005
+North West,2017,17146,5.63
+Yorkshire and The Humber,2017,16585,5.52
+East Midlands,2017,17154,7.26
+West Midlands,2017,16875,6.865
+London,2017,27573,15.1
+South East,2017,22640,11.1
+South West,2017,19277,8.985
+Wales,2017,16268,5.71
+North East,2018,16435,5.33
+North West,2018,17643,5.73
+Yorkshire and The Humber,2018,17166,5.61
+East Midlands,2018,17687,7.13
+West Midlands,2018,17368,7.3100000000000005
+London,2018,29107,14.73
+South East,2018,23449,11.115
+South West,2018,20007,9.14
+Wales,2018,16893,5.7
+North East,2019,16997,5.105
+North West,2019,18231,5.7
+Yorkshire and The Humber,2019,17713,5.33
+East Midlands,2019,18298,7.2
+West Midlands,2019,17891,7.245
+London,2019,29613,14.41
+South East,2019,24195,10.565000000000001
+South West,2019,20725,9.34
+Wales,2019,17356,5.59
+North East,2020,17211,5.095000000000001
+North West,2020,18395,5.72
+Yorkshire and The Humber,2020,17896,5.45
+East Midlands,2020,18455,7.28
+West Midlands,2020,18000,7.395
+London,2020,29162,14.04
+South East,2020,23856,10.585
+South West,2020,20774,9.14
+Wales,2020,17598,5.705
+North East,2021,17658,5.6850000000000005
+North West,2021,18894,6.58
+Yorkshire and The Humber,2021,18427,6.02
+East Midlands,2021,19026,8.25
+West Midlands,2021,18547,7.985
+London,2021,30714,15.26
+South East,2021,24693,11.5
+South West,2021,21484,10.385
+Wales,2021,18150,6.57
+North East,2022,18419,5.244999999999999
+North West,2022,19837,6.37
+Yorkshire and The Humber,2022,19387,5.98
+East Midlands,2022,19995,7.8
+West Midlands,2022,19506,7.88
+London,2022,32553,14.09
+South East,2022,26066,11.375
+South West,2022,22744,9.850000000000001
+Wales,2022,18858,6.295
+North East,2023,19977,5.3
+North West,2023,21543,6.27
+Yorkshire and The Humber,2023,21027,5.78
+East Midlands,2023,21656,7.59
+West Midlands,2023,21141,7.605
+London,2023,35361,14.05
+South East,2023,28187,11.285
+South West,2023,24854,9.625
+Wales,2023,20140,6.065
