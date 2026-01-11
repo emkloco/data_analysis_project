@@ -29,7 +29,7 @@ class SpectrumVisualizer:
         )
         
         # 2. FIXED FONTS: Much larger for readability
-        plt.title('Figure 6: The Survival Spectrum', fontsize=18, fontweight='bold', pad=20)
+        plt.title('Figure 5: The Survival Spectrum', fontsize=18, fontweight='bold', pad=20)
         plt.xlabel('Consumer Solvency Score (Income ÷ Housing Cost)', fontsize=14, fontweight='bold')
         plt.ylabel('', fontsize=12) # Hide Y label, the names are obvious
         
@@ -39,8 +39,8 @@ class SpectrumVisualizer:
         
         
         
-        plt.savefig(config.FIGURES_DIR / "06_survival_spectrum.png", dpi=300, bbox_inches='tight')
-        print("Saved fig 6 (Fixed Colors & Fonts)")
+        plt.savefig(config.FIGURES_DIR / "05_survival_spectrum.png", dpi=300, bbox_inches='tight')
+        print("Saved fig 5 (Fixed Colors & Fonts)")
 
 if __name__ == "__main__":
     SpectrumVisualizer().run()

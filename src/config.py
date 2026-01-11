@@ -31,4 +31,6 @@ class ProjectConfig:
         self.COLOR_BAD = '#c0392b'
         self.COLOR_INCOME = '#e67e22' 
         self.COLOR_HOUSING = '#c0392b' 
+        self.COLOR_NEUTRAL = "#7f7f7f"
+        
         

@@ -42,17 +42,18 @@ class GdpRatioVisualizer:
         )
         
         # Labels
-        plt.title('The Cost of Growth: GDP vs Housing Affordability', fontsize=14, fontweight='bold', pad=20)
+        plt.title('Figure 1. GDP per Capita and Housing Affordability in the UK', fontsize=14, fontweight='bold', pad=20)
         plt.xlabel('Real GDP per Capita (£)', fontsize=12, fontweight='bold')
-        plt.ylabel('Housing Price to Earnings Ratio', fontsize=12, fontweight='bold')
+        plt.ylabel('Housing Price to Income Ratio', fontsize=12, fontweight='bold')
         
         # Stats Box
         stats_text = (
             f"Correlation ($r$): {r:.2f}\n"
             f"R-Squared: {r_squared:.2f}\n"
             f"P-Value: < 0.001"
+            
         )
-        plt.text(0.05, 0.95, stats_text, transform=ax.transAxes, fontsize=11,
+        plt.text(0.05, 0.95, stats_text, transform=ax.transAxes, fontsize=14,
                  verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='lightgrey'))
         
         # Annotate Years
@@ -62,14 +63,10 @@ class GdpRatioVisualizer:
         plt.text(max_pt['GDP_GBP'], max_pt['Ratio']-0.2, str(int(max_pt['Year'])), fontweight='bold', color=config.COLOR_GDP)
         
         plt.grid(True, linestyle='--', alpha=0.3)
-        plt.savefig(config.FIGURES_DIR / "07_gdp_ratio_scatter.png", dpi=300, bbox_inches='tight')
-        print("Saved Figure 7: GDP vs Ratio Scatter")
+        plt.savefig(config.FIGURES_DIR / "01_gdp_ratio_scatter.png", dpi=300, bbox_inches='tight')
+        print("Saved Figure 1: GDP vs Ratio Scatter")
 
-        # ==========================================
-        # FIGURE 8: DUAL AXIS TIME SERIES (The Divergence)
-        # ==========================================
-        # Since Ratio (e.g., 8.0) and GDP (e.g., £30,000) are different units,
-        # we MUST use a dual axis to compare the trends properly.
+       
         
         fig, ax1 = plt.subplots(figsize=(12, 7))
         sns.set_theme(style="whitegrid")
@@ -92,24 +89,12 @@ class GdpRatioVisualizer:
         
         plt.title('The Broken Link: Economic Growth vs Housing Difficulty', fontsize=16, fontweight='bold')
         
-        
-        plt.text(
-            latest['Survival_Score'].min(), 
-            len(latest) - 0.5, 
-            "Note: High Score = Good (Green)\nLow Score = Bad (Red)", 
-            fontsize=12, 
-            color='grey', 
-            style='italic',
-            bbox=dict(facecolor='white', alpha=0, edgecolor='none')
-        )
-        
         # Combined Legend
         lines_1, labels_1 = ax1.get_legend_handles_labels()
         lines_2, labels_2 = ax2.get_legend_handles_labels()
         ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left', fontsize=11)
         
-        plt.savefig(config.FIGURES_DIR / "08_gdp_ratio_time.png", dpi=300, bbox_inches='tight')
-        print("Saved Figure 8: GDP vs Ratio Time Series")
+        
 
 if __name__ == "__main__":
     GdpRatioVisualizer().run()
