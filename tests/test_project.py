@@ -10,7 +10,6 @@ import os
 # Add the project root to sys.path so we can import src modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# --- THESE IMPORTS MUST MATCH YOUR ACTUAL FILE NAMES ---
 from src.config import ProjectConfig
 from src.data_processor import DataProcessor
 from src.vis_1_gdp_ratio import GdpRatioVisualizer
@@ -46,13 +45,15 @@ class TestDataProcessor(unittest.TestCase):
         })
 
         # 2. Mock Income Data (ONS Format)
+        # FIX: Ensure all columns have the same length (2 items)
         self.df_income = pd.DataFrame({
             'ITL': ['ITL1', 'ITL1'], 'ITL code': ['UKC', 'UKD'],
             'Region name': ['North East', 'North West'],
-            '2020': ['25,000'], '2021': ['26,000'] # String with commas
+            '2020': ['25,000', '25,500'], 
+            '2021': ['26,000', '26,500'] 
         })
         
-        # 3. Mock Housing Data (ONS Format - Long/Wide mixed simulation)
+        # 3. Mock Housing Data (ONS Format)
         self.df_housing = pd.DataFrame({
             'Country/Region code': ['E1', 'E2'], 'Country/Region name': ['North East', 'North West'],
             'Local authority code': ['LA1', 'LA2'], 'Local authority name': ['City A', 'City B'],
@@ -106,8 +107,7 @@ class TestDataProcessor(unittest.TestCase):
         self.assertEqual(mock_to_csv.call_count, 3)
         
         # 3. Verify National Data Logic (GDP should be scaled by 0.78)
-        # We grab the first DataFrame sent to to_csv (OUT_NATIONAL)
-        national_df = mock_to_csv.call_args_list[0][0][0] # Arg 0 is the dataframe
+        national_df = mock_to_csv.call_args_list[0][0][0]
         self.assertIn('GDP_GBP', national_df.columns)
         self.assertIn('Gini', national_df.columns)
         # Check calculation (100 * 0.78 = 78.0)
@@ -164,10 +164,12 @@ class TestVisualizations(unittest.TestCase):
         args, _ = mock_save.call_args
         self.assertIn('01_hollow_middle.png', str(args[0]))
 
+    # FIX: Patch GeoDataFrame.plot to avoid rendering issues with mock geometry
+    @patch('geopandas.GeoDataFrame.plot')
     @patch('matplotlib.pyplot.savefig')
     @patch('geopandas.read_file') # Mock Internet Download
     @patch('pandas.read_csv')
-    def test_vis_3_map(self, mock_read, mock_geo_read, mock_save):
+    def test_vis_3_map(self, mock_read, mock_geo_read, mock_save, mock_plot):
         """Test RealMapVisualizer handles missing map data gracefully."""
         # Mock Regional Data
         mock_read.return_value = pd.DataFrame({
@@ -182,6 +184,8 @@ class TestVisualizations(unittest.TestCase):
         viz = RealMapVisualizer()
         viz.run()
         
+        # Verify plot was called (logic ran) and file saved
+        self.assertTrue(mock_plot.called)
         self.assertTrue(mock_save.called)
         args, _ = mock_save.call_args
         self.assertIn('02_real_map.png', str(args[0]))
