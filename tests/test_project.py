@@ -45,7 +45,7 @@ class TestDataProcessor(unittest.TestCase):
         })
 
         # 2. Mock Income Data (ONS Format)
-        # FIX: Ensure all columns have the same length (2 items)
+        # Ensure all columns have the same length (2 items)
         self.df_income = pd.DataFrame({
             'ITL': ['ITL1', 'ITL1'], 'ITL code': ['UKC', 'UKD'],
             'Region name': ['North East', 'North West'],
@@ -78,7 +78,7 @@ class TestDataProcessor(unittest.TestCase):
         self.df_income_full = pd.concat([self.df_income_uk, self.df_income])
 
     @patch('src.data_processor.pd.read_csv')
-    @patch('src.data_processor.pd.DataFrame.to_csv')
+    @patch('src.data_processor.pd.DataFrame.to_csv', autospec=True) # FIX: Added autospec=True
     @patch('os.listdir')
     @patch('pathlib.Path.exists')
     def test_run_processing_success(self, mock_exists, mock_listdir, mock_to_csv, mock_read_csv):
@@ -107,6 +107,7 @@ class TestDataProcessor(unittest.TestCase):
         self.assertEqual(mock_to_csv.call_count, 3)
         
         # 3. Verify National Data Logic (GDP should be scaled by 0.78)
+        # Because of autospec=True, args[0] is now the DataFrame (self), args[1] is the path
         national_df = mock_to_csv.call_args_list[0][0][0]
         self.assertIn('GDP_GBP', national_df.columns)
         self.assertIn('Gini', national_df.columns)
@@ -164,7 +165,6 @@ class TestVisualizations(unittest.TestCase):
         args, _ = mock_save.call_args
         self.assertIn('01_hollow_middle.png', str(args[0]))
 
-    # FIX: Patch GeoDataFrame.plot to avoid rendering issues with mock geometry
     @patch('geopandas.GeoDataFrame.plot')
     @patch('matplotlib.pyplot.savefig')
     @patch('geopandas.read_file') # Mock Internet Download
