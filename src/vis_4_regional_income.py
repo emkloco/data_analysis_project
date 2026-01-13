@@ -46,7 +46,7 @@ class RegionalIncomeVisualizer:
         )
         
         # 5. Styling & Annotations
-        plt.title('Figure 4. Real Household Disposable Income per Head by Region (1997–2023)', 
+        plt.title('Figure 3. Real Household Disposable Income per Head by Region (1997–2023)', 
                  fontsize=14, fontweight='bold', pad=20)
         plt.ylabel('Average Disposable Income (£)', fontsize=12, fontweight='bold')
         plt.xlabel('Year', fontsize=12, fontweight='bold')
@@ -66,8 +66,8 @@ class RegionalIncomeVisualizer:
         plt.legend(title='Region', loc='upper left', frameon=True, framealpha=0.9, fontsize=14)
         
         # 6. Save
-        plt.savefig(config.FIGURES_DIR / "04_regional_income_trend.png", dpi=300, bbox_inches='tight')
-        print("Saved Figure 4: Regional Income Trend (Distinct Colors)")
+        plt.savefig(config.FIGURES_DIR / "03_regional_income_trend.png", dpi=300, bbox_inches='tight')
+        print("Saved Figure 3: Regional Income Trend (Distinct Colors)")
 
 if __name__ == "__main__":
     RegionalIncomeVisualizer().run()

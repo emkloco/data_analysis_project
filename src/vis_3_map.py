@@ -87,9 +87,9 @@ class RealMapVisualizer:
         ax.set_axis_off()
         
         # Added fontweight='bold' explicitly here as well
-        plt.title(f'Figure 3. Regional Housing Affordability Across the UK', fontsize=20, fontweight='bold')
+        plt.title(f'Figure 2. Regional Housing Affordability Across the UK', fontsize=20, fontweight='bold')
         
-        save_path = config.FIGURES_DIR / "03_real_map.png"
+        save_path = config.FIGURES_DIR / "02_real_map.png"
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"Saved complete map to {save_path}")
 

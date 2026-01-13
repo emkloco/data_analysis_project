@@ -42,7 +42,7 @@ class GdpRatioVisualizer:
         )
         
         # Labels
-        plt.title('Figure 1. GDP per Capita and Housing Affordability in the UK', fontsize=14, fontweight='bold', pad=20)
+        plt.title('Figure 4. GDP per Capita and Housing Affordability in the UK', fontsize=14, fontweight='bold', pad=20)
         plt.xlabel('Real GDP per Capita (£)', fontsize=12, fontweight='bold')
         plt.ylabel('Housing Price to Income Ratio', fontsize=12, fontweight='bold')
         
@@ -63,8 +63,8 @@ class GdpRatioVisualizer:
         plt.text(max_pt['GDP_GBP'], max_pt['Ratio']-0.2, str(int(max_pt['Year'])), fontweight='bold', color=config.COLOR_GDP)
         
         plt.grid(True, linestyle='--', alpha=0.3)
-        plt.savefig(config.FIGURES_DIR / "01_gdp_ratio_scatter.png", dpi=300, bbox_inches='tight')
-        print("Saved Figure 1: GDP vs Ratio Scatter")
+        plt.savefig(config.FIGURES_DIR / "04_gdp_ratio_scatter.png", dpi=300, bbox_inches='tight')
+        print("Saved Figure 4: GDP vs Ratio Scatter")
 
        
         
