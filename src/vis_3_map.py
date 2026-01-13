@@ -7,29 +7,27 @@ class RealMapVisualizer:
     def run(self):
         config = ProjectConfig()
         
-        # ---------------------------------------------------------
-        # UPDATED: Force ALL fonts to be bold globally
-        # ---------------------------------------------------------
+        
         plt.rcParams["font.weight"] = "bold"
         plt.rcParams["axes.labelweight"] = "bold"
         plt.rcParams["axes.titleweight"] = "bold"
         
         print("--- generating real geospatial map (Full UK Fix) ---")
         
-        # 1. Load Data
+        # 1. load data
         df = pd.read_csv(config.OUT_REGIONAL)
         latest = df[df['Year'] == df['Year'].max()].copy()
         
-        # --- THE FIX: FILL MISSING DATA ---
+      
         median_ratio = latest['Ratio'].median()
         if latest['Ratio'].isnull().any():
             print(f"Fixing missing housing data for: {latest[latest['Ratio'].isnull()]['Region'].unique()}")
             latest['Ratio'] = latest['Ratio'].fillna(median_ratio)
         
-        # Calculate Solvency
+        # calculate solvency
         latest['Solvency'] = latest['Income'] / latest['Ratio']
         
-        # 2. Map Download
+        # 2. map download
         urls = {
             "ew": "https://raw.githubusercontent.com/martinjc/UK-GeoJSON/master/json/eurostat/ew/nuts1.json",
             "sco": "https://raw.githubusercontent.com/martinjc/UK-GeoJSON/master/json/eurostat/sco/nuts1.json",
@@ -50,7 +48,7 @@ class RealMapVisualizer:
 
         gdf = gpd.GeoDataFrame(pd.concat(gdfs, ignore_index=True))
         
-        # 3. Name Matching
+        # 3. name matching
         gdf['clean_name'] = gdf['NUTS112NM'].str.lower().str.replace(r" \(.*\)", "", regex=True).str.strip()
         latest['clean_name'] = latest['Region'].str.lower().str.strip()
         
@@ -62,10 +60,10 @@ class RealMapVisualizer:
         }
         gdf['clean_name'] = gdf['clean_name'].replace(name_map)
         
-        # 4. Merge
+        # 4. merge
         merged = gdf.merge(latest, left_on='clean_name', right_on='clean_name', how='left')
         
-        # 5. Plot
+        # 5. plot
         fig, ax = plt.subplots(1, 1, figsize=(10, 12))
         
         median_solvency = latest['Solvency'].median()
@@ -86,7 +84,7 @@ class RealMapVisualizer:
         
         ax.set_axis_off()
         
-        # Added fontweight='bold' explicitly here as well
+        # added fontweight='bold' explicitly here as well
         plt.title(f'Figure 2. Regional Housing Affordability Across the UK', fontsize=20, fontweight='bold')
         
         save_path = config.FIGURES_DIR / "02_real_map.png"

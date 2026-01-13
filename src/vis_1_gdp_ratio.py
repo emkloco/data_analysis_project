@@ -10,10 +10,10 @@ class GdpRatioVisualizer:
         config = ProjectConfig()
         print("--- Generating GDP vs Housing Ratio Reality Checks ---")
         
-        # 1. Load Data
+        # 1. load data
         df = pd.read_csv(config.OUT_NATIONAL)
         
-        # 2. Clean Data (Ensure we have both metrics)
+        # 2. clean data (ensure we have both metrics)
         plot_df = df.dropna(subset=['GDP_GBP', 'Ratio']).sort_values('Year')
         
         if len(plot_df) < 2:
@@ -21,17 +21,17 @@ class GdpRatioVisualizer:
             return
 
         # ==========================================
-        # FIGURE 7: SCATTER PLOT (The Correlation)
+        # FIGURE 7: SCATTER PLOT (the correlation)
         # ==========================================
         plt.figure(figsize=(10, 7))
         sns.set_theme(style="ticks")
         
-        # Calculate Stats
+        # calculate stats
         r, p_value = stats.pearsonr(plot_df['GDP_GBP'], plot_df['Ratio'])
         r_squared = r**2
         
-        # Scatter with Regression Line
-        # We expect a positive correlation (Rich Country = Expensive Houses)
+        # scatter with regression line
+        # we expect a positive correlation (rich country = expensive houses)
         ax = sns.regplot(
             data=plot_df, 
             x='GDP_GBP', 
@@ -41,12 +41,12 @@ class GdpRatioVisualizer:
             ci=95
         )
         
-        # Labels
+        # labels
         plt.title('Figure 4. GDP per Capita and Housing Affordability in the UK', fontsize=14, fontweight='bold', pad=20)
         plt.xlabel('Real GDP per Capita (£)', fontsize=12, fontweight='bold')
         plt.ylabel('Housing Price to Income Ratio', fontsize=12, fontweight='bold')
         
-        # Stats Box
+        # stats box
         stats_text = (
             f"Correlation ($r$): {r:.2f}\n"
             f"R-Squared: {r_squared:.2f}\n"
@@ -56,7 +56,7 @@ class GdpRatioVisualizer:
         plt.text(0.05, 0.95, stats_text, transform=ax.transAxes, fontsize=14,
                  verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.9, edgecolor='lightgrey'))
         
-        # Annotate Years
+        # annotate years
         min_pt = plot_df.loc[plot_df['GDP_GBP'].idxmin()]
         max_pt = plot_df.loc[plot_df['GDP_GBP'].idxmax()]
         plt.text(min_pt['GDP_GBP'], min_pt['Ratio']+0.2, str(int(min_pt['Year'])), fontweight='bold', color=config.COLOR_GDP)
@@ -71,7 +71,7 @@ class GdpRatioVisualizer:
         fig, ax1 = plt.subplots(figsize=(12, 7))
         sns.set_theme(style="whitegrid")
         
-        # Left Axis: GDP
+        # left axis: GDP
         color_1 = config.COLOR_GDP
         ax1.set_xlabel('Year', fontsize=12, fontweight='bold')
         ax1.set_ylabel('GDP per Capita (£)', color=color_1, fontsize=12, fontweight='bold')
@@ -79,7 +79,7 @@ class GdpRatioVisualizer:
         ax1.tick_params(axis='y', labelcolor=color_1)
         ax1.grid(False)
         
-        # Right Axis: Housing Ratio
+        # right axis: housing ratio
         ax2 = ax1.twinx() 
         color_2 = config.COLOR_HOUSING
         ax2.set_ylabel('Housing Affordability Ratio (Lower is Better)', color=color_2, fontsize=12, fontweight='bold')
@@ -89,7 +89,7 @@ class GdpRatioVisualizer:
         
         plt.title('The Broken Link: Economic Growth vs Housing Difficulty', fontsize=16, fontweight='bold')
         
-        # Combined Legend
+        # combined legend
         lines_1, labels_1 = ax1.get_legend_handles_labels()
         lines_2, labels_2 = ax2.get_legend_handles_labels()
         ax1.legend(lines_1 + lines_2, labels_1 + labels_2, loc='upper left', fontsize=11)

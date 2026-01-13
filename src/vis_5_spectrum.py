@@ -10,15 +10,15 @@ class SpectrumVisualizer:
         
         latest = df[df['Year'] == df['Year'].max()].copy()
         
-        # Metric: Solvency Score = Disposable Income / Housing Ratio
-        # Meaning: "Real Spending Power" adjusted for housing stress.
+        # metric: solvency score = disposable income / housing ratio
+        # meaning: "real spending power" adjusted for housing stress.
         latest['Survival_Score'] = latest['Income'] / latest['Ratio']
         latest = latest.sort_values('Survival_Score', ascending=False)
         
         plt.figure(figsize=(12, 8))
         
-        # 1. FIXED PALETTE: 'RdYlGn_r' (Reversed)
-        # This makes the Top items (High Score) GREEN and Bottom items RED.
+        # 1. fixed pallette: 'RdYlGn_r' 
+        # this makes the top items (high score) GREEN and bottom items RED.
         sns.barplot(
             data=latest, 
             x='Survival_Score', 
@@ -28,12 +28,12 @@ class SpectrumVisualizer:
             legend=False
         )
         
-        # 2. FIXED FONTS: Much larger for readability
+        
         plt.title('Figure 5: The Survival Spectrum', fontsize=18, fontweight='bold', pad=20)
         plt.xlabel('Consumer Solvency Score (Income ÷ Housing Cost)', fontsize=14, fontweight='bold')
-        plt.ylabel('', fontsize=12) # Hide Y label, the names are obvious
+        plt.ylabel('', fontsize=12) 
         
-        # Make Region names (Y-axis) bigger
+        # make region names (y-axis) bigger
         plt.tick_params(axis='y', labelsize=14)
         plt.tick_params(axis='x', labelsize=12)
         

@@ -6,8 +6,8 @@ class TableSnapshotVisualizer:
     def run(self):
         config = ProjectConfig()
         
-        # 1. Setup the 2023 Data
-        # I've sorted these by Income (descending) to match your screenshot's logic
+        # 1. setup the 2023 data
+        
         data = {
             'Region': [
                 'London', 
@@ -37,15 +37,15 @@ class TableSnapshotVisualizer:
         
         df = pd.DataFrame(data)
 
-        # 2. Create the Table Plot
-        # We use a figure size that fits a table (taller/narrower)
+        # 2. create the table plot
+        # we use a figure size that fits a table (taller/narrower)
         plt.figure(figsize=(8, 6))
         
-        # Remove the graph axes (we just want the table)
+        
         ax = plt.gca()
         ax.axis('off')
         
-        # Create the table
+        # create the table
         # cellLoc='center' centers the text
         # loc='center' puts the table in the middle of the image
         table = plt.table(
@@ -53,24 +53,24 @@ class TableSnapshotVisualizer:
             colLabels=df.columns,
             cellLoc='center',
             loc='center',
-            bbox=[0, 0, 1, 1] # This stretches the table to fill the figure
+            bbox=[0, 0, 1, 1] # stretches the table to fill the figure
         )
 
-        # 3. Styling to match your screenshot
+        
         table.auto_set_font_size(False)
         table.set_fontsize(12)
         
-        # Make the header row bold and slightly larger (optional, purely for looks)
+        # make the header row bold and slightly larger
         for (row, col), cell in table.get_celld().items():
             if row == 0:
                 cell.set_text_props(weight='bold', size=13)
-                cell.set_height(0.08) # Header height
+                cell.set_height(0.08) 
             else:
-                cell.set_height(0.06) # Row height
+                cell.set_height(0.06) 
 
         plt.title('Appendix B: 2023 Regional Data Snapshot', fontsize=14, y=1.02)
         
-        # 4. Save
+        # 4. save
         output_path = config.FIGURES_DIR / "06_regions_table_2023.png"
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
         print(f"Saved table to {output_path}")
