@@ -10,6 +10,7 @@ import os
 # Add the project root to sys.path so we can import src modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# --- THESE IMPORTS MUST MATCH YOUR ACTUAL FILE NAMES ---
 from src.config import ProjectConfig
 from src.data_processor import DataProcessor
 from src.vis_1_gdp_ratio import GdpRatioVisualizer
@@ -81,12 +82,12 @@ class TestDataProcessor(unittest.TestCase):
     @patch('pathlib.Path.exists')
     def test_run_processing_success(self, mock_exists, mock_listdir, mock_to_csv, mock_read_csv):
         """Test full data processing pipeline with happy path."""
-        # setup mocks
-        mock_exists.return_value = True # files exist
-        mock_listdir.return_value = ['gini_index.csv'] # found the gini file
+        # Setup Mocks
+        mock_exists.return_value = True # Files exist
+        mock_listdir.return_value = ['gini_index.csv'] # Found the gini file
         
         # side_effect defines what read_csv returns each time it is called.
-        # order in code: GDP -> Income -> Housing -> Gini
+        # Order in code: GDP -> Income -> Housing -> Gini
         mock_read_csv.side_effect = [
             self.df_gdp,
             self.df_income_full,
@@ -97,19 +98,19 @@ class TestDataProcessor(unittest.TestCase):
         processor = DataProcessor()
         processor.run()
 
-        # assertions
-        # 1. check if input files were read
+        # Assertions
+        # 1. Check if input files were read
         self.assertEqual(mock_read_csv.call_count, 4)
         
-        # 2. check if output files were saved (National, Regional, LA)
+        # 2. Check if output files were saved (National, Regional, LA)
         self.assertEqual(mock_to_csv.call_count, 3)
         
-        # 3. verify national data logic (GDP should be scaled by 0.78)
-        # we grab the first DataFrame sent to to_csv (OUT_NATIONAL)
-        national_df = mock_to_csv.call_args_list[0][0][0] # arg 0 is the dataframe
+        # 3. Verify National Data Logic (GDP should be scaled by 0.78)
+        # We grab the first DataFrame sent to to_csv (OUT_NATIONAL)
+        national_df = mock_to_csv.call_args_list[0][0][0] # Arg 0 is the dataframe
         self.assertIn('GDP_GBP', national_df.columns)
         self.assertIn('Gini', national_df.columns)
-        # check calculation (100 * 0.78 = 78.0)
+        # Check calculation (100 * 0.78 = 78.0)
         self.assertAlmostEqual(national_df.iloc[0]['GDP_GBP'], 78.0)
 
     @patch('src.data_processor.pd.read_csv')
@@ -118,7 +119,7 @@ class TestDataProcessor(unittest.TestCase):
         mock_read_csv.side_effect = Exception("File not found")
         
         processor = DataProcessor()
-        # should catch exception and print error, not crash
+        # Should catch exception and print error, not crash
         try:
             processor.run()
         except Exception as e:
@@ -127,11 +128,11 @@ class TestDataProcessor(unittest.TestCase):
 class TestVisualizations(unittest.TestCase):
     
     @patch('matplotlib.pyplot.savefig')
-    @patch('matplotlib.pyplot.show') # block plots appearing
+    @patch('matplotlib.pyplot.show') # Block plots appearing
     @patch('pandas.read_csv')
     def test_vis_1_gdp_ratio(self, mock_read, mock_show, mock_save):
         """Test GdpRatioVisualizer generates plot and saves."""
-        # mock national data
+        # Mock National Data
         mock_read.return_value = pd.DataFrame({
             'Year': [2000, 2001, 2002],
             'GDP_GBP': [25000, 26000, 27000],
@@ -141,7 +142,7 @@ class TestVisualizations(unittest.TestCase):
         viz = GdpRatioVisualizer()
         viz.run()
         
-        # verify savefig called with correct filename pattern
+        # Verify savefig called with correct filename pattern
         self.assertTrue(mock_save.called)
         args, _ = mock_save.call_args
         self.assertIn('04_gdp_ratio_scatter.png', str(args[0]))
@@ -150,7 +151,7 @@ class TestVisualizations(unittest.TestCase):
     @patch('pandas.read_csv')
     def test_vis_2_hollow(self, mock_read, mock_save):
         """Test HollowVisualizer (KDE) runs correctly."""
-        # mock la Data 
+        # Mock LA Data (Needs Year and Ratio)
         mock_read.return_value = pd.DataFrame({
             'Year': [2002, 2002, 2022, 2022],
             'Ratio': [4.0, 4.5, 10.0, 11.0]
@@ -168,12 +169,12 @@ class TestVisualizations(unittest.TestCase):
     @patch('pandas.read_csv')
     def test_vis_3_map(self, mock_read, mock_geo_read, mock_save):
         """Test RealMapVisualizer handles missing map data gracefully."""
-        # mock regional data
+        # Mock Regional Data
         mock_read.return_value = pd.DataFrame({
             'Region': ['North East'], 'Year': [2023], 'Income': [20000], 'Ratio': [5.0]
         })
         
-        # mock GeoJSON
+        # Mock GeoJSON (Empty or Valid)
         mock_geo_read.return_value = gpd.GeoDataFrame({
             'NUTS112NM': ['North East'], 'geometry': [None]
         })
@@ -189,7 +190,7 @@ class TestVisualizations(unittest.TestCase):
     @patch('pandas.read_csv')
     def test_vis_4_regional_income(self, mock_read, mock_save):
         """Test RegionalIncomeVisualizer filters and plots."""
-        # mock data with target regions
+        # Mock Data with target regions
         mock_read.return_value = pd.DataFrame({
             'Region': ['London', 'North East', 'Other'],
             'Year': [2023, 2023, 2023],
