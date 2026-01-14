@@ -22,53 +22,9 @@ class DataProcessor:
             print(f"CRITICAL: Core files missing. {e}")
             return
 
-        # 2. load gini file (specific logic)
-        uk_gini = pd.DataFrame(columns=['Year', 'Gini'])
-        gini_path = self.config.RAW_DIR / self.config.FILE_GINI
-        
-        # if specific file doesn't exist, search for it
-        if not gini_path.exists():
-            for f in os.listdir(self.config.RAW_DIR):
-                if 'gini' in f.lower() and f.endswith('.csv'):
-                    gini_path = self.config.RAW_DIR / f
-                    print(f"Found Gini file: {f}")
-                    break
-        
-        if gini_path.exists():
-            try:
-                
-                print(f"Loading Gini from {gini_path.name}...")
-                df_gini = pd.read_csv(gini_path, skiprows=4)
-                
-                # check if it loaded correctly (look for 'Country Code')
-                if 'Country Code' in df_gini.columns:
-                    # filter for UK
-                    uk_row = df_gini[df_gini['Country Code'] == 'GBR']
-                    
-                    if not uk_row.empty:
-                        # reshape from wide (1990, 1991...) to long
-                        id_vars = ['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code']
-                        val_vars = [c for c in uk_row.columns if c.isdigit()] # Only year columns
-                        
-                        uk_gini = uk_row.melt(id_vars=id_vars, value_vars=val_vars, var_name='Year', value_name='Gini')
-                        
-                        # clean
-                        uk_gini['Year'] = pd.to_numeric(uk_gini['Year'], errors='coerce')
-                        uk_gini['Gini'] = pd.to_numeric(uk_gini['Gini'], errors='coerce')
-                        uk_gini = uk_gini.dropna(subset=['Gini', 'Year'])
-                        
-                        print(f"Loaded {len(uk_gini)} years of Gini data.")
-                    else:
-                        print("WARNING: Gini file loaded, but 'GBR' row not found.")
-                else:
-                    print("WARNING: Gini file structure unrecognized (expected 'Country Code' in header).")
-                    
-            except Exception as e:
-                print(f"Error processing Gini file: {e}")
-        else:
-            print("WARNING: Gini file not found.")
+    
 
-        # 3. process national trends (GDP + income + housing)
+        # 2. process national trends (GDP + income + housing)
         # gdp
         uk_gdp = df_gdp[df_gdp['Country Code'] == 'GBR'].melt(
             id_vars=['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code'], 
@@ -111,7 +67,7 @@ class DataProcessor:
             
         national = national.sort_values('Year')
 
-        # 4. process regional data
+        # 3. process regional data
         housing_reg = housing_melt.groupby(['Country/Region name', 'Year'])['Ratio'].median().reset_index()
         housing_reg.rename(columns={'Country/Region name': 'Region'}, inplace=True)
         
