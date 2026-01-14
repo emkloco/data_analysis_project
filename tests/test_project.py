@@ -60,12 +60,7 @@ class TestDataProcessor(unittest.TestCase):
             '2020': [5.0, 6.0], '2021': [5.5, 6.5]
         })
 
-        # 4. mock gini data
-        self.df_gini = pd.DataFrame({
-            'Country Name': ['United Kingdom'], 'Country Code': ['GBR'],
-            'Indicator Name': ['Gini'], 'Indicator Code': ['GINI'],
-            '2020': [34.0], '2021': [35.0]
-        })
+
         
         # 5. mock income for "United Kingdom" row (for national merge)
         self.df_income_uk = pd.DataFrame({
@@ -85,15 +80,14 @@ class TestDataProcessor(unittest.TestCase):
         """Test full data processing pipeline with happy path."""
         # setup mocks
         mock_exists.return_value = True 
-        mock_listdir.return_value = ['gini_index.csv'] 
+        
         
         # side_effect defines what read_csv returns each time it is called.
-        # order in code: GDP -> Income -> Housing -> Gini
+        # order in code: GDP -> Income -> Housing 
         mock_read_csv.side_effect = [
             self.df_gdp,
             self.df_income_full,
             self.df_housing,
-            self.df_gini
         ]
 
         processor = DataProcessor()
@@ -110,7 +104,7 @@ class TestDataProcessor(unittest.TestCase):
         
         national_df = mock_to_csv.call_args_list[0][0][0]
         self.assertIn('GDP_GBP', national_df.columns)
-        self.assertIn('Gini', national_df.columns)
+       
         
         self.assertAlmostEqual(national_df.iloc[0]['GDP_GBP'], 78.0)
 
