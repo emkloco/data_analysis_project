@@ -66,25 +66,16 @@ This script cleans raw ONS/WorldBank data, merges it, and handles missing values
 ```bash
 python src/data_processor.py
 Output: Generates cleaned CSVs in data/processed/.
-Step 2: Generate Visualizations
-Run individual visualizers to generate specific figures for the report.
+Step 2: Generate Visualisations
+Run run_workflow.py to automatically generate all visualisations.
 
 Bash
-# Figure 1: The Hollowing Middle (KDE Plot)
-python src/vis_2_hollow.py
 
-# Figure 2: Geospatial Solvency Map
-python src/vis_3_map.py
+python run_workflow.py
 
-# Figure 3: Regional Income Trends
-python src/vis_4_regional_income.py
-
-# Figure 4: GDP vs Housing Correlation
-python src/vis_1_gdp_ratio.py
-
-# Figure 5: The Solvency Spectrum
-python src/vis_5_spectrum.py
 Output: All images are saved to reports/figures/.
+
+```
 ### 6. How Tests Work
 This project maintains a professional Unit Test Suite located in tests/test_project.py.
 
@@ -95,7 +86,9 @@ matplotlib.pyplot.savefig: Verifies graphs are generated without actually writin
 geopandas.read_file: Simulates map data downloads.
 Running Tests
 To verify the integrity of the code:
-
+```
 Bash
 pytest tests/
+
+```
 Expected Output: 9 passed in 0.xx seconds
