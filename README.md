@@ -1,7 +1,6 @@
 # Analysis of Structural Economic Shifts in UK Grocery Demand
 
 **Module:** DAT5501 - Analysis, Software and Career Practice  
-**Student ID:** [Your Student ID]  
 **Date:** January 2026
 
 ## Project Overview
