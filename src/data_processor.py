@@ -8,7 +8,7 @@ class DataProcessor:
         self.config = ProjectConfig()
 
     def run(self):
-        print("--- starting data processing (fixed gini) ---")
+        
         
         # 1. load standard files
         try:
@@ -57,13 +57,7 @@ class DataProcessor:
         national = pd.merge(uk_gdp[['Year', 'GDP_GBP']], uk_income[['Year', 'Income']], on='Year', how='outer')
         national = pd.merge(national, uk_housing, on='Year', how='outer')
         
-        # merge gini (safe merge)
-        if not uk_gini.empty:
-            national = pd.merge(national, uk_gini[['Year', 'Gini']], on='Year', how='left')
         
-        # guarantee gini column exists (fill NaN if missing)
-        if 'Gini' not in national.columns:
-            national['Gini'] = np.nan
             
         national = national.sort_values('Year')
 
@@ -98,7 +92,7 @@ class DataProcessor:
         regional.to_csv(self.config.OUT_REGIONAL, index=False)
         housing_melt.dropna(subset=['Ratio']).to_csv(self.config.OUT_LA, index=False)
         
-        print("data processing complete. 'Gini' column guaranteed.")
+        print("data processing complete.")
 
 if __name__ == "__main__":
     DataProcessor().run()
