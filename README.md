@@ -1,7 +1,5 @@
 # Analysis of Structural Economic Shifts in UK Grocery Demand
 **Module:** DAT5501 - Analysis, Software and Career Practice  
-**Student ID:** [Your Student ID]  
-**Date:** January 2026
 
 ## 1. Project Purpose
 This project investigates the **"Solvency Paradox"** facing mid-market UK supermarkets. While national GDP suggests economic growth, mid-market retailers are seeing a decline in volume sales. 
@@ -54,9 +52,8 @@ The analysis utilizes three high-authority sources to ensure validity:
 
 2.  **Install dependencies:**
     ```bash
-    pip install pandas matplotlib seaborn geopandas pytest numpy
+    pip install -r requirements.txt
     ```
-    *(Or use `pip install -r requirements.txt` if available)*
 
 ---
 
@@ -88,7 +85,7 @@ python src/vis_1_gdp_ratio.py
 # Figure 5: The Solvency Spectrum
 python src/vis_5_spectrum.py
 Output: All images are saved to reports/figures/.
-6. How Tests Work
+### 6. How Tests Work
 This project maintains a professional Unit Test Suite located in tests/test_project.py.
 
 Testing Philosophy
